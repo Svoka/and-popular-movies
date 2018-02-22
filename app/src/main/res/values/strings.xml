@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Popular Movies</string>
+    <string name="movie_backdrop">Movie backdrop</string>
+    <string name="cd_movie_poster">Movie poster</string>
+    <string name="rating_value">%.1f/10</string>
+    <string name="menu_action_show_high_rated">Show high rated</string>
+    <string name="menu_action_show_popular">Show popular</string>
+</resources>
