@@ -1,6 +1,8 @@
 package osipov.artem.popularmovies.repository.model;
 
-import android.os.Parcel;
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
+import android.arch.persistence.room.PrimaryKey;
 import com.google.gson.annotations.SerializedName;
 import java.util.Date;
 import osipov.artem.popularmovies.BuildConfig;
@@ -9,8 +11,10 @@ import osipov.artem.popularmovies.BuildConfig;
  * Created by Artem Osipov on 21/02/2018.
  * ao@enlighted.ru
  */
+@Entity(tableName = Movie.TABLE_NAME)
+public class Movie {
+    public static final String TABLE_NAME = "movies";
 
-public class Movie implements android.os.Parcelable {
     @SerializedName("original_title")
     private String title = "";
 
@@ -20,6 +24,7 @@ public class Movie implements android.os.Parcelable {
     @SerializedName("backdrop_path")
     private String backdrop = "";
 
+    @PrimaryKey
     private String id = "";
 
     @SerializedName("vote_average")
@@ -27,14 +32,14 @@ public class Movie implements android.os.Parcelable {
 
     private String overview = "";
 
-    @SerializedName("release_date")
+    @Ignore @SerializedName("release_date")
     private Date releaseDate;
 
-    public Movie(final String id, final String title, final String poster) {
-        this.id = id;
-        this.title = title;
-        this.poster = poster;
-    }
+    private String releaseYear = "";
+    private Integer popularIndex = -1;
+    private Integer mostRatedIndex = -1;
+    private Boolean favourite = false;
+
 
     public String getTitle() {
         return title;
@@ -92,43 +97,36 @@ public class Movie implements android.os.Parcelable {
         this.releaseDate = releaseDate;
     }
 
-    // Auto-generated, to be removed on the Stage 2
-    @Override
-    public int describeContents() {
-        return 0;
+    public Integer getPopularIndex() {
+        return popularIndex;
     }
 
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(this.title);
-        dest.writeString(this.poster);
-        dest.writeString(this.backdrop);
-        dest.writeString(this.id);
-        dest.writeValue(this.rating);
-        dest.writeString(this.overview);
-        dest.writeLong(this.releaseDate != null ? this.releaseDate.getTime() : -1);
+    public void setPopularIndex(final Integer popularIndex) {
+        this.popularIndex = popularIndex;
     }
 
-    protected Movie(Parcel in) {
-        this.title = in.readString();
-        this.poster = in.readString();
-        this.backdrop = in.readString();
-        this.id = in.readString();
-        this.rating = (Double) in.readValue(Double.class.getClassLoader());
-        this.overview = in.readString();
-        long tmpReleaseDate = in.readLong();
-        this.releaseDate = tmpReleaseDate == -1 ? null : new Date(tmpReleaseDate);
+    public Integer getMostRatedIndex() {
+        return mostRatedIndex;
     }
 
-    public static final Creator<Movie> CREATOR = new Creator<Movie>() {
-        @Override
-        public Movie createFromParcel(Parcel source) {
-            return new Movie(source);
-        }
+    public void setMostRatedIndex(final Integer mostRatedIndex) {
+        this.mostRatedIndex = mostRatedIndex;
+    }
 
-        @Override
-        public Movie[] newArray(int size) {
-            return new Movie[size];
-        }
-    };
+    public Boolean getFavourite() {
+        return favourite;
+    }
+
+    public void setFavourite(final Boolean favourite) {
+        this.favourite = favourite;
+    }
+
+    public String getReleaseYear() {
+        return releaseYear;
+    }
+
+    public void setReleaseYear(final String releaseYear) {
+        this.releaseYear = releaseYear;
+    }
+
 }
