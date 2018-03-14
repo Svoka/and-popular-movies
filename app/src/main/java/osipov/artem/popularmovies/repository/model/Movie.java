@@ -1,8 +1,7 @@
 package osipov.artem.popularmovies.repository.model;
 
-import android.arch.persistence.room.Entity;
-import android.arch.persistence.room.Ignore;
-import android.arch.persistence.room.PrimaryKey;
+
+import android.database.Cursor;
 import com.google.gson.annotations.SerializedName;
 import java.util.Date;
 import osipov.artem.popularmovies.BuildConfig;
@@ -11,10 +10,7 @@ import osipov.artem.popularmovies.BuildConfig;
  * Created by Artem Osipov on 21/02/2018.
  * ao@enlighted.ru
  */
-@Entity(tableName = Movie.TABLE_NAME)
 public class Movie {
-    public static final String TABLE_NAME = "movies";
-
     @SerializedName("original_title")
     private String title = "";
 
@@ -24,21 +20,20 @@ public class Movie {
     @SerializedName("backdrop_path")
     private String backdrop = "";
 
-    @PrimaryKey
-    private String id = "";
+    private Integer id = -1;
 
     @SerializedName("vote_average")
     private Double rating = 0d;
 
     private String overview = "";
 
-    @Ignore @SerializedName("release_date")
     private Date releaseDate;
 
     private String releaseYear = "";
     private Integer popularIndex = -1;
     private Integer mostRatedIndex = -1;
     private Boolean favourite = false;
+
 
 
     public String getTitle() {
@@ -57,11 +52,11 @@ public class Movie {
         this.poster = poster;
     }
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(final String id) {
+    public void setId(final Integer id) {
         this.id = id;
     }
 

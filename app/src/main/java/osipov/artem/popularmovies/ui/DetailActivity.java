@@ -26,6 +26,9 @@ public class DetailActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
 
+        Integer dbId = intent.getIntExtra(EXTRA_MOVIE, -1);
+
+
         Movie movie = intent.getParcelableExtra(EXTRA_MOVIE);
 
         ImageView backDropImageView = findViewById(R.id.iv_backdrop);

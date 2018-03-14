@@ -8,7 +8,7 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import osipov.artem.popularmovies.R;
 import osipov.artem.popularmovies.repository.model.Movie;
-import osipov.artem.popularmovies.ui.adapters.MoviesArrayAdapter.MoviesArrayAdapterClickListener;
+import osipov.artem.popularmovies.ui.adapters.MoviesCursorAdapter.MoviesArrayAdapterClickListener;
 
 /**
  * Created by Artem Osipov on 21/02/2018.
@@ -24,14 +24,13 @@ public class MovieRvHolder extends ViewHolder {
         posterImageView =  itemView.findViewById(R.id.iv_poster);
     }
 
-    public void bind(final MoviesArrayAdapterClickListener listener, Movie movie, final int position) {
-        Glide.with((Context) listener).load(movie.getPoster()).into(posterImageView);
-        posterImageView.setContentDescription(movie.getTitle());
-        itemView.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(final View view) {
-                listener.onMovieClicked(position);
-            }
-        });
+    public void bind(
+            final Integer dbId,
+            final String poster,
+            final String title,
+            final MoviesArrayAdapterClickListener listener) {
+        Glide.with((Context) listener).load(poster).into(posterImageView);
+        posterImageView.setContentDescription(title);
+        itemView.setOnClickListener(view -> listener.onMovieClicked(dbId));
     }
 }
