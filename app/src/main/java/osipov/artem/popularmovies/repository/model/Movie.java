@@ -1,9 +1,12 @@
 package osipov.artem.popularmovies.repository.model;
 
 
-import android.database.Cursor;
 import com.google.gson.annotations.SerializedName;
+
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+
 import osipov.artem.popularmovies.BuildConfig;
 
 /**
@@ -35,6 +38,8 @@ public class Movie {
     private Boolean favourite = false;
 
 
+    private List<Trailer> trailers = new ArrayList<>();
+    private List<Review> reviews = new ArrayList<>();
 
     public String getTitle() {
         return title;
@@ -124,4 +129,19 @@ public class Movie {
         this.releaseYear = releaseYear;
     }
 
+    public List<Trailer> getTrailers() {
+        return trailers;
+    }
+
+    public void setTrailers(List<Trailer> trailers) {
+        this.trailers = trailers;
+    }
+
+    public List<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(List<Review> reviews) {
+        this.reviews = reviews;
+    }
 }

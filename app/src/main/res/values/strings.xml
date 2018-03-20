@@ -5,4 +5,6 @@
     <string name="rating_value">%.1f/10</string>
     <string name="menu_action_show_high_rated">Show high rated</string>
     <string name="menu_action_show_popular">Show popular</string>
+    <string name="menu_action_show_favourite">Show Favourite</string>
+    <string name="play_image">Play image</string>
 </resources>

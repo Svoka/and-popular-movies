@@ -37,8 +37,6 @@ public class MovieListViewModel extends ViewModel {
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(
                             cursor -> {
-                                Log.e("MovieListViewModel", "CURSOR RECEIVED");
-                                Log.e("MovieListViewModel", "CURSOR size:" + cursor.getCount());
                                 mMoviesCursor.setValue(cursor);
                             },
                             throwable -> {

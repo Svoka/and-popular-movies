@@ -2,6 +2,8 @@ package osipov.artem.popularmovies.di;
 
 import dagger.Component;
 import javax.inject.Singleton;
+
+import osipov.artem.popularmovies.ui.MovieDetailViewModel;
 import osipov.artem.popularmovies.ui.MovieListViewModel;
 
 /**
@@ -13,4 +15,5 @@ import osipov.artem.popularmovies.ui.MovieListViewModel;
 @Component(modules={AppModule.class})
 public interface AppComponent {
    void inject(MovieListViewModel movieListViewModel);
+   void inject(MovieDetailViewModel movieDetailViewModel);
 }

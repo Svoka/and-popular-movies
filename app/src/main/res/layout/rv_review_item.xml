@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_content"
+        tools:text="The arrogance of medicinally inclined youth! I remember coming out the theatre after having seen Flatliners in 1990 and being really annoyed. The premise of the story is so superb and was ripe for a terrifying horror film, but Flatliners then, and now, is not terrifying, but that actually doesn't matter.\r\n\r\nIn 1990 some of the more bright young acting prospects were off making Memphis Belle, the other half that was made up of potential Brat Packers like Kiefer Sutherland, Julia Roberts, William Baldwin, Oliver Platt and Kevin Bacon, were joining director Joel Schumacher for this delve into life after death experiments. \r\n\r\nThe tyro medical students, led by a darkly egotistical Sutherland, begin inducing their own deaths to see what awaits once the flatline has been reached. Seems great at first, but as the students push the time limits of being dead still further, what comes into their real worlds is actually not welcome.\r\n\r\nPic is never close to being frightening, but the thematics involved are chilling and the big message at its heart is loud and clear. At times it's an uneasy blend of supernatural dalliances and medical science, but the breezy cast hold engagement, while cinematographer Jan de Bont's misty lenses are perfectly in the realm of the ethereal. 7/10"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_author"
+        app:layout_constraintTop_toBottomOf="@id/tv_content"
+        tools:text="John Chard"
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorAccent"
+        android:layout_marginBottom="5dp"
+        app:layout_constraintTop_toBottomOf="@id/tv_author"
+        />
+
+</android.support.constraint.ConstraintLayout>

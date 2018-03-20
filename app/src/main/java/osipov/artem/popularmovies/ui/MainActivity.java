@@ -61,6 +61,9 @@ public class MainActivity extends AppCompatActivity implements MoviesArrayAdapte
             case R.id.action_popular:
                 mModel.setPreferedView(PreferredViewInteractor.ARG_VIEW_POPULAR);
                 return true;
+            case R.id.action_favourite:
+                mModel.setPreferedView(PreferredViewInteractor.ARG_VIEW_FAVOURITE);
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }

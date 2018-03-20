@@ -2,6 +2,8 @@ package osipov.artem.popularmovies.repository.api;
 
 import osipov.artem.popularmovies.BuildConfig;
 import osipov.artem.popularmovies.repository.model.MoviesListResponse;
+import osipov.artem.popularmovies.repository.model.ReviewsListResponse;
+import osipov.artem.popularmovies.repository.model.TrailersListResponse;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
@@ -19,8 +21,8 @@ public interface MoviesApi {
     Call<MoviesListResponse> listHighRatedMovies();
 
     @GET("3/movie/{id}/videos?api_key="+ BuildConfig.API_KEY)
-    Call<MoviesListResponse> listTrailers(@Path("id") String id);
+    Call<TrailersListResponse> listTrailers(@Path("id") String id);
 
     @GET("3/movie/{id}/reviews?api_key="+ BuildConfig.API_KEY)
-    Call<MoviesListResponse> listReviews(@Path("id") String id);
+    Call<ReviewsListResponse> listReviews(@Path("id") String id);
 }

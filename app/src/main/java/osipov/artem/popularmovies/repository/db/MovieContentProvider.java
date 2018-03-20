@@ -10,6 +10,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.util.Log;
+
 import osipov.artem.popularmovies.repository.db.PopularMoviesContract.MovieEntry;
 
 /**
@@ -32,7 +34,7 @@ public class MovieContentProvider extends ContentProvider {
 
         UriMatcher uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
         uriMatcher.addURI(PopularMoviesContract.AUTHORITY, PopularMoviesContract.PATH_MOVIES, CODE_MOVIE_DIR);
-        uriMatcher.addURI(PopularMoviesContract.AUTHORITY, PopularMoviesContract.PATH_MOVIES + "/*", CODE_MOVIE_ITEM);
+        uriMatcher.addURI(PopularMoviesContract.AUTHORITY, PopularMoviesContract.PATH_MOVIES + "/#", CODE_MOVIE_ITEM);
         return uriMatcher;
     }
 
@@ -48,12 +50,26 @@ public class MovieContentProvider extends ContentProvider {
     public Cursor query(@NonNull Uri uri, @Nullable String[] projection, @Nullable String selection,
             @Nullable String[] selectionArgs, @Nullable String sortOrder) {
         final int code = sUriMatcher.match(uri);
+
         if (code >= CODE_MOVIE_DIR && code <= CODE_MOVIE_ITEM) {
+
             final Context context = getContext();
             if (context == null) {
                 return null;
             }
-            return mDatabase.query(MovieEntry.TABLE_NAME, projection, selection, selectionArgs, null, null, sortOrder);
+
+            switch (code) {
+                case CODE_MOVIE_DIR:
+                    return mDatabase.query(MovieEntry.TABLE_NAME, projection, selection, selectionArgs, null, null, sortOrder);
+                case CODE_MOVIE_ITEM:
+                    String id = uri.getPathSegments().get(1);
+                    String mSelection = "_id=?";
+                    String[] mSelectionArgs = new String[]{id};
+                    return mDatabase.query(MovieEntry.TABLE_NAME, projection, mSelection, mSelectionArgs, null, null, sortOrder);
+                default:
+                    return null;
+            }
+
         } else {
             throw new IllegalArgumentException("Unknown URI: " + uri);
         }
@@ -128,7 +144,12 @@ public class MovieContentProvider extends ContentProvider {
                     return 0;
                 }
 
-                int updatedCount = mDatabase.update(MovieEntry.TABLE_NAME, values, selection, selectionArgs);
+                String id = uri.getPathSegments().get(1);
+                String mSelection = "_id=?";
+                String[] mSelectionArgs = new String[]{id};
+
+
+                int updatedCount = mDatabase.update(MovieEntry.TABLE_NAME, values, mSelection, mSelectionArgs);
                 getContext().getContentResolver().notifyChange(uri, null);
                 return updatedCount;
             default:
