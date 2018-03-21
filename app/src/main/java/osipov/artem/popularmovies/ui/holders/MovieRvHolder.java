@@ -31,7 +31,7 @@ public class MovieRvHolder extends ViewHolder {
             final String poster,
             final String title,
             final MoviesArrayAdapterClickListener listener) {
-        Glide.with((Context) listener).load( BuildConfig.PICTURE_URL_185+poster).into(posterImageView);
+        Glide.with((Context) listener).load(poster).into(posterImageView);
         posterImageView.setContentDescription(title);
         itemView.setOnClickListener(view -> listener.onMovieClicked(dbId));
     }
