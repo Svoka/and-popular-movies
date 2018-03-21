@@ -50,7 +50,7 @@ public class Movie {
     }
 
     public String getPoster() {
-        return BuildConfig.PICTURE_URL_185+poster;
+        return poster;
     }
 
     public void setPoster(final String poster) {
@@ -66,7 +66,7 @@ public class Movie {
     }
 
     public String getBackdrop() {
-        return BuildConfig.PICTURE_URL_500+backdrop;
+        return backdrop;
     }
 
     public void setBackdrop(final String backdrop) {

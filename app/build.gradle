@@ -18,8 +18,8 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
         buildConfigField('String', 'API_KEY', '"' + apiProperties['apiKey'] + '"')
-        buildConfigField('String', 'PICTURE_URL_185', '"https://image.tmdb.org/t/p/w185/"')
-        buildConfigField('String', 'PICTURE_URL_500', '"https://image.tmdb.org/t/p/w500/"')
+        buildConfigField('String', 'PICTURE_URL_185', '"https://image.tmdb.org/t/p/w185"')
+        buildConfigField('String', 'PICTURE_URL_500', '"https://image.tmdb.org/t/p/w500"')
     }
     buildTypes {
         release {
