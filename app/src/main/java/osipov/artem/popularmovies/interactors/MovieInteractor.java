@@ -25,6 +25,8 @@ import java.util.List;
 
 
 import javax.inject.Inject;
+
+import osipov.artem.popularmovies.BuildConfig;
 import osipov.artem.popularmovies.repository.api.ApiProvider;
 import osipov.artem.popularmovies.repository.db.PopularMoviesContract.MovieEntry;
 import osipov.artem.popularmovies.repository.model.Movie;
@@ -161,8 +163,8 @@ public class MovieInteractor {
 
                         contentValues.put(MovieEntry.COLUMN_NAME_ID, movie.getId());
                         contentValues.put(MovieEntry.COLUMN_NAME_TITLE, movie.getTitle());
-                        contentValues.put(MovieEntry.COLUMN_NAME_BACKDROP, movie.getBackdrop());
-                        contentValues.put(MovieEntry.COLUMN_NAME_POSTER, movie.getPoster());
+                        contentValues.put(MovieEntry.COLUMN_NAME_BACKDROP, BuildConfig.PICTURE_URL_500+movie.getBackdrop());
+                        contentValues.put(MovieEntry.COLUMN_NAME_POSTER, BuildConfig.PICTURE_URL_185+movie.getPoster());
                         contentValues.put(MovieEntry.COLUMN_NAME_RATING, movie.getRating());
                         contentValues.put(MovieEntry.COLUMN_NAME_OVERVIEW, movie.getOverview());
 
