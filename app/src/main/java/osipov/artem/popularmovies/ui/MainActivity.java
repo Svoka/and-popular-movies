@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.DisplayMetrics;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -28,7 +29,7 @@ public class MainActivity extends AppCompatActivity implements MoviesArrayAdapte
 
         mModel = ViewModelProviders.of(this).get(MovieListViewModel.class);
         final RecyclerView moviesRecyclerView = findViewById(R.id.rv_movies);
-        moviesRecyclerView.setLayoutManager(new GridLayoutManager(this, 2));
+        moviesRecyclerView.setLayoutManager(new GridLayoutManager(this, numberOfColumns()));
 
         final MoviesCursorAdapter moviesArrayAdapter = new MoviesCursorAdapter(this);
         moviesRecyclerView.setAdapter(moviesArrayAdapter);
@@ -69,5 +70,17 @@ public class MainActivity extends AppCompatActivity implements MoviesArrayAdapte
         }
     }
 
+
+    // with the suggestion from The Reviewer :)
+    private int numberOfColumns() {
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        // You can change this divider to adjust the size of the poster
+        int widthDivider = 400;
+        int width = displayMetrics.widthPixels;
+        int nColumns = width / widthDivider;
+        if (nColumns < 2) return 2; //to keep the grid aspect
+        return nColumns;
+    }
 
 }
