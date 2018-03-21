@@ -84,11 +84,13 @@ public class DetailActivity extends AppCompatActivity implements TrailersArrayAd
     public void onTrailerClicked(String source) {
         Intent appIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("vnd.youtube:" + source));
         Intent webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.youtube.com/watch?v=" + source));
-        try {
+
+        if (appIntent.resolveActivity(getPackageManager()) != null) {
             startActivity(appIntent);
-        } catch (ActivityNotFoundException ex) {
+        } else {
             startActivity(webIntent);
         }
+
     }
 
     private void showDetailMovie(Movie movie) {
